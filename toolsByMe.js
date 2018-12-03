@@ -240,7 +240,6 @@ var getGlobal = function () {
  * @return {[type]} [description]
  */
 var getCurrentTime = function() {
-    var nowTime
     let date = new Date()
     let year = date.getFullYear()
     let month = date.getMonth() + 1
@@ -254,7 +253,7 @@ var getCurrentTime = function() {
         item < 10 ? "0" + item : item
     })
     // console.log(`${year}年/${month}月/${day}日 ${hours}时/${minu}分/${second}秒`)
-    return nowTime = `${year}年/${month}月/${day}日 ${hours}时/${minu}分/${second}秒`
+    return `${year}年/${month}月/${day}日 ${hours}时/${minu}分/${second}秒`
 }
 
 // 封装 ajax 函数
