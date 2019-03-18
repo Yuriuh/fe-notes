@@ -2,8 +2,8 @@
  * log 函数
  * @return {none} 
  */
-var log = function() {
-    console.log.apply(console, arguments)
+var log = function () {
+  console.log.apply(console, arguments)
 }
 
 /**
@@ -11,8 +11,8 @@ var log = function() {
  * @param  {CSS选择器} selector 
  * @return {DOM元素} 
  */
-var e = function(selector) {
-    return document.querySelector(selector)
+var e = function (selector) {
+  return document.querySelector(selector)
 }
 
 /**
@@ -20,8 +20,8 @@ var e = function(selector) {
  * @param  {CSS选择器} selector 
  * @return {DOM元素集合} 
  */
-var es = function(selector) {
-    return document.querySelectorAll(selector)
+var es = function (selector) {
+  return document.querySelectorAll(selector)
 }
 
 
@@ -31,8 +31,8 @@ var es = function(selector) {
  * @param  {模板变量} html 一般用模板字符串
  * @return {none} 
  */
-var appendHtml = function(element, html) {
-    element.insertAdjacentHTML('beforeend', html)
+var appendHtml = function (element, html) {
+  element.insertAdjacentHTML('beforeend', html)
 }
 
 /**
@@ -42,8 +42,8 @@ var appendHtml = function(element, html) {
  * @param  {回调函数} callback 
  * @return {none} 
  */
-var bindEvent = function(element, eventName, callback) {
-    element.addEventListener(eventName, callback)
+var bindEvent = function (element, eventName, callback) {
+  element.addEventListener(eventName, callback)
 }
 
 /**
@@ -53,12 +53,12 @@ var bindEvent = function(element, eventName, callback) {
  * @param  {回调函数} callback 
  * @return {none} 
  */
-var bindAll = function(selector, eventName, callback) {
-    var elements = document.querySelectorAll(selector)
-    for(var i = 0; i < elements.length; i++) {
-        var e = elements[i]
-        bindEvent(e, eventName, callback)
-    }
+var bindAll = function (selector, eventName, callback) {
+  var elements = document.querySelectorAll(selector)
+  for (var i = 0; i < elements.length; i++) {
+    var e = elements[i]
+    bindEvent(e, eventName, callback)
+  }
 }
 
 /**
@@ -68,10 +68,10 @@ var bindAll = function(selector, eventName, callback) {
  * @param  {回调函数} callback 
  * @return {none} 
  */
-var bindLots = function(elemArr, eventName, callback) {
-    for(var i = 0; i < elemArr.length; i++) {
-        elemArr[i].addEventListener(eventName, callback)
-    }
+var bindLots = function (elemArr, eventName, callback) {
+  for (var i = 0; i < elemArr.length; i++) {
+    elemArr[i].addEventListener(eventName, callback)
+  }
 }
 
 /**
@@ -80,12 +80,12 @@ var bindLots = function(elemArr, eventName, callback) {
  * @param  {类名} className 
  * @return {none} 
  */
-var toggleClass = function(element, className) {
-    if (element.classList.contains(className)) {
-        element.classList.remove(className)
-    } else {
-        element.classList.add(className)
-    }
+var toggleClass = function (element, className) {
+  if (element.classList.contains(className)) {
+    element.classList.remove(className)
+  } else {
+    element.classList.add(className)
+  }
 }
 
 /**
@@ -93,18 +93,18 @@ var toggleClass = function(element, className) {
  * @param  {类名} className 
  * @return {none} 
  */
-var removeClassAll = function(className) {
-    var selector = '.' + className
-    var elements = document.querySelectorAll(selector)
-    for (var i = 0; i < elements.length; i++) {
-        var e = elements[i]
-        e.classList.remove(className)
-    }
+var removeClassAll = function (className) {
+  var selector = '.' + className
+  var elements = document.querySelectorAll(selector)
+  for (var i = 0; i < elements.length; i++) {
+    var e = elements[i]
+    e.classList.remove(className)
+  }
 }
 
 // find 函数可以查找 element 的所有子元素
-var find = function(element, selector) {
-    return element.querySelector(selector)
+var find = function (element, selector) {
+  return element.querySelector(selector)
 }
 
 
@@ -114,110 +114,110 @@ var find = function(element, selector) {
 
 // 封装兼容性好的 addEvent 函数
 function addEvent(elem, type, handle) {
-    if(elem.addEventListener) {
-        elem.addEventListener(type, handle, false)
-    } else if(elem.attachEvent) {
-        elem.attachEvent('on' + type, function() {
-            handle.call(elem)
-        })
-    } else {
-        elem['on' + type] = handle
-    }
+  if (elem.addEventListener) {
+    elem.addEventListener(type, handle, false)
+  } else if (elem.attachEvent) {
+    elem.attachEvent('on' + type, function () {
+      handle.call(elem)
+    })
+  } else {
+    elem['on' + type] = handle
+  }
 }
 
 // 封装兼容性好的 removeEvent 函数
-function removeEvent(element, type, handler){
-    if (element.removeEventListener){
-        element.removeEventListener(type, handler, false);
-    } else if (element.detachEvent){
-        element.detachEvent("on" + type, handler);
-    } else {
-        element["on" + type] = null;
-    }
+function removeEvent(element, type, handler) {
+  if (element.removeEventListener) {
+    element.removeEventListener(type, handler, false);
+  } else if (element.detachEvent) {
+    element.detachEvent("on" + type, handler);
+  } else {
+    element["on" + type] = null;
+  }
 }
 
 // 封装兼容性好的 stopBubble 函数
 function stopBubble(event) {
-    if(event.stopPropagation) {
-        event.stopPropagation()
-    } else {
-        event.cancelBubble = true
-    }
+  if (event.stopPropagation) {
+    event.stopPropagation()
+  } else {
+    event.cancelBubble = true
+  }
 }
 
 // 封装兼容性好的 cancelDefault 函数
 function cancelDefault(event) {
-    if(event.preventDefault) {
-        event.preventDefault()
-    } else {
-        event.returnValue = false
-    }
+  if (event.preventDefault) {
+    event.preventDefault()
+  } else {
+    event.returnValue = false
+  }
 }
 
 // 封装 getStyle 获取元素属性的函数
 function getStyle(elem, prop) {
-    if(window.getComputedStyle) {
-        return window.getComputedStyle(elem, null)[prop]
-    } else {
-        return elem.currentStyle[prop]
-    }
+  if (window.getComputedStyle) {
+    return window.getComputedStyle(elem, null)[prop]
+  } else {
+    return elem.currentStyle[prop]
+  }
 }
 
 // 拖拽函数
 function drag(elem) {
-    var disX,
-        disY;
-    addEvent(elem, 'mousedown', function(e) {
-        var event = e || window.event
-        disX = event.clientX - parseInt(getStyle(elem, 'left'))
-        disY = event.clientY - parseInt(getStyle(elem, 'top'))
-        addEvent(document, 'mousemove', mouseMove)
-        addEvent(document, 'mouseup', mouseUp)
-        stopBubble(event)
-        cancelDefault(event)
-    })
-    function mouseMove(e) {
-        var  event = e || window.event
-        elem.style.left = event.clientX - disX + 'px'
-        elem.style.top = event.clientY - disY + 'px'
-    }
-    function mouseUp(e) {
-        var event = e || window.event
-        removeEvent(document, 'mousemove', mouseMove)
-        removeEvent(document, 'mouseup', mouseUp)
-    }
+  var disX,
+    disY;
+  addEvent(elem, 'mousedown', function (e) {
+    var event = e || window.event
+    disX = event.clientX - parseInt(getStyle(elem, 'left'))
+    disY = event.clientY - parseInt(getStyle(elem, 'top'))
+    addEvent(document, 'mousemove', mouseMove)
+    addEvent(document, 'mouseup', mouseUp)
+    stopBubble(event)
+    cancelDefault(event)
+  })
+  function mouseMove(e) {
+    var event = e || window.event
+    elem.style.left = event.clientX - disX + 'px'
+    elem.style.top = event.clientY - disY + 'px'
+  }
+  function mouseUp(e) {
+    var event = e || window.event
+    removeEvent(document, 'mousemove', mouseMove)
+    removeEvent(document, 'mouseup', mouseUp)
+  }
 }
 
 // 多物体多值链式运动框架
 function startMove(obj, json, callback) {
-    clearInterval(obj.timer)
-    var iSpeed, iCur
-    obj.timer = setInterval(function() {
-        var bStop = true
-        // 遍历属性集合
-        for(var attr in json) {
-            if (attr == 'opacity') {
-                iCur = parseFloat(getStyle(obj, attr)) * 100
-            } else {
-                iCur = parseInt(getStyle(obj, attr))
-            }
-            iSpeed = (json[attr] - iCur) / 7
-            iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed)
-            if (attr == 'opacity') {
-                obj.style.opacity = (iCur + iSpeed) / 100
-            } else {
-                obj.style[attr] = iCur + iSpeed + 'px'
-            }
-            if (iCur != json[attr]) {
-                bStop = false
-            }
-        }
-        // 停止
-        if (bStop) {
-            clearInterval(obj.timer)
-            typeof callback === 'function' ? callback() : ''
-        }
-    }, 30)
+  clearInterval(obj.timer)
+  var iSpeed, iCur
+  obj.timer = setInterval(function () {
+    var bStop = true
+    // 遍历属性集合
+    for (var attr in json) {
+      if (attr == 'opacity') {
+        iCur = parseFloat(getStyle(obj, attr)) * 100
+      } else {
+        iCur = parseInt(getStyle(obj, attr))
+      }
+      iSpeed = (json[attr] - iCur) / 7
+      iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed)
+      if (attr == 'opacity') {
+        obj.style.opacity = (iCur + iSpeed) / 100
+      } else {
+        obj.style[attr] = iCur + iSpeed + 'px'
+      }
+      if (iCur != json[attr]) {
+        bStop = false
+      }
+    }
+    // 停止
+    if (bStop) {
+      clearInterval(obj.timer)
+      typeof callback === 'function' ? callback() : ''
+    }
+  }, 30)
 }
 
 
@@ -239,51 +239,51 @@ var getGlobal = function () {
  * 获取当前时间函数
  * @return {[type]} [description]
  */
-var getCurrentTime = function() {
-    let date = new Date()
-    let year = date.getFullYear()
-    let month = date.getMonth() + 1
-    let day = date.getDate()
-    let hours = date.getHours()
-    let minu = date.getMinutes()
-    let second = date.getSeconds()
-    // 判断是否满 10
-    let arr = [month, day, hours, minu, second]
-    arr.forEach(item => {
-        item < 10 ? "0" + item : item
-    })
-    // console.log(`${year}年/${month}月/${day}日 ${hours}时/${minu}分/${second}秒`)
-    return `${year}年/${month}月/${day}日 ${hours}时/${minu}分/${second}秒`
+var getCurrentTime = function () {
+  let date = new Date()
+  let year = date.getFullYear()
+  let month = date.getMonth() + 1
+  let day = date.getDate()
+  let hours = date.getHours()
+  let minu = date.getMinutes()
+  let second = date.getSeconds()
+  // 判断是否满 10
+  let arr = [month, day, hours, minu, second]
+  arr.forEach(item => {
+    item < 10 ? "0" + item : item
+  })
+  // console.log(`${year}年/${month}月/${day}日 ${hours}时/${minu}分/${second}秒`)
+  return `${year}年/${month}月/${day}日 ${hours}时/${minu}分/${second}秒`
 }
 
 // 封装 ajax 函数
 function ajaxFunc(method, url, header, data, callback) {
-    var xhr = null
-    method = method.toUpperCase()
-    // 创建 ajax 对象
-    if(window.XMLHttpRequest) {
-        xhr = new XMLHttpRequest()
-    } else {
-        xhr = new ActiveXObject('Microsoft.XMLHttp')
+  var xhr = null
+  method = method.toUpperCase()
+  // 创建 ajax 对象
+  if (window.XMLHttpRequest) {
+    xhr = new XMLHttpRequest()
+  } else {
+    xhr = new ActiveXObject('Microsoft.XMLHttp')
+  }
+  // 判断方法
+  if (method == 'GET') {
+    xhr.open(method, url + '?' + data, true)
+    xhr.send()
+  } else if (method == 'POST') {
+    xhr.open(method, url, true)
+    // xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+    xhr.setRequestHeader('content-type', header)
+    xhr.send(data)
+  }
+  // 监听状态
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4) {
+      if (xhr.status == 200) {
+        callback(xhr.responseText)
+      }
     }
-    // 判断方法
-    if(method == 'GET') {
-        xhr.open(method, url + '?' + data, true)
-        xhr.send()
-    } else if(method == 'POST') {
-        xhr.open(method, url, true)
-        // xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
-        xhr.setRequestHeader('content-type', header)
-        xhr.send(data)
-    }
-    // 监听状态
-    xhr.onreadystatechange = function() {
-        if(xhr.readyState == 4) {
-            if(xhr.status == 200) {
-                callback(xhr.responseText)
-            }
-        }
-    }
+  }
 }
 // 在这个网站调试代码
 // https://api.douban.com/
